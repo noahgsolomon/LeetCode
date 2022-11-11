@@ -1,0 +1,50 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        def verticalCheck(array):
+            for i in range(len(array)):
+                result = []
+                for j in range(len(array[i])):
+                    if array[j][i] != ".":
+                        result.append(array[j][i])
+                setVal = set(result)
+                if len(setVal) != len(result):
+                    return False
+            return True
+
+
+        def horizontalCheck(array):
+            for i in range(len(array)):
+                result = []
+                for j in range(len(array[i])):
+                    if array[i][j] != ".":
+                        result.append(array[i][j])
+                setVal = set(result)
+                if len(setVal) != len(result):
+                    return False
+            return True
+
+
+        def boxCheck(array):
+            rowshift = 0
+            colshift = 0
+            for b in range(9):
+                result = []
+                if b != 0 and b % 3 != 0:
+                    colshift += 3
+                elif b != 0 and b % 3 == 0:
+                    rowshift += 3
+                    colshift = 0
+                for i in range(rowshift, rowshift + 3):
+                    for j in range(colshift, colshift + 3):
+                        if array[i][j] != ".":
+                            result.append(array[i][j])
+                setVal = set(result)
+                if len(setVal) != len(result):
+                    return False
+            return True
+
+        if verticalCheck(board) == False or horizontalCheck(board) == False or boxCheck(board) == False:
+            return False
+        return True
+
+                    
