@@ -1,0 +1,17 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        answer = []
+        
+        def recursion(open, closed, cand):
+            if open == closed == n:
+                answer.append(cand)
+                return
+            
+            if open < n:
+                recursion(open + 1, closed, cand + "(")
+                
+            if closed < open:
+                recursion(open, closed + 1, cand + ")")
+                
+        recursion(0, 0, "")
+        return answer
