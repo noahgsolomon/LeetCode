@@ -1,0 +1,12 @@
+import math
+class Solution:
+    def guessNumber(self, n: int) -> int:
+        l, r = 0, n
+        while l < r:
+            m = l + math.ceil((r - l) / 2) 
+            if guess(m) == -1:
+                r = m
+            elif guess(m) == 1:
+                l = m
+            else:
+                return m
