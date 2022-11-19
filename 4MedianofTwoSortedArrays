@@ -1,0 +1,10 @@
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        join = nums1 + nums2
+        join.sort()
+        if len(join) % 2 != 0:
+            return float(join[len(join) - math.ceil(len(join) / 2)])
+        else:
+            r = join[len(join) - len(join) // 2]
+            l = join[(len(join) - len(join) // 2) - 1]
+            return float((r - l) / 2) + l
