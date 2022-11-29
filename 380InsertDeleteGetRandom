@@ -1,0 +1,28 @@
+class RandomizedSet:
+
+    def __init__(self):
+        self.map = {}
+        self.list = []
+
+    def insert(self, val: int) -> bool:
+        res = val not in self.map
+        if res:
+            self.list.append(val)
+            self.map[val] = len(self.list) - 1
+        return res
+
+    def remove(self, val: int) -> bool:
+        res = val in self.map
+        if res:
+            index = self.map[val]
+            last = self.list[-1]
+            self.list[index] = last
+            self.list.pop()
+            self.map[last] = index
+            del self.map[val]
+        return res
+        
+        
+
+    def getRandom(self) -> int:
+        return random.choice(self.list)
